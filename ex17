@@ -1,0 +1,3 @@
+17. Write a C program for DES algorithm for decryption, the 16 keys (K1, K2, c, K16) are used in
+reverse order. Design a key-generation scheme with the appropriate shift schedule for the decryption
+process.
