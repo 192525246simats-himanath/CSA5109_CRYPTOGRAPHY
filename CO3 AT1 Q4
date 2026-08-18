@@ -1,0 +1,21 @@
+import hashlib
+import time
+
+key = "serverkey"
+client = "Client01"
+
+t = str(int(time.time()))
+ticket = client + "|" + t
+auth = hashlib.sha256((ticket + key).encode()).hexdigest()
+
+print("Client:", client)
+print("Ticket:", ticket)
+print("Authentication:", auth)
+
+check = hashlib.sha256(
+    (ticket + key).encode()).hexdigest()
+
+if check == auth:
+    print("Ticket Valid")
+else:
+    print("Ticket Invalid")
