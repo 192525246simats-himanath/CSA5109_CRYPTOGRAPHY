@@ -1,0 +1,24 @@
+import hashlib
+import math
+
+p, g = 467, 2
+x = 127
+y = pow(g, x, p)
+
+msg = "Hello"
+h = int(hashlib.sha256(msg.encode()).hexdigest(), 16) % (p-1)
+
+k = 3
+while math.gcd(k, p-1) != 1:
+    k += 1
+
+r = pow(g, k, p)
+s = ((h-x*r)*pow(k, -1, p-1)) % (p-1)
+
+print("Message:", msg)
+print("Signature:", r, s)
+
+if (pow(y,r,p)*pow(r,s,p)) % p == pow(g,h,p):
+    print("Signature Verified")
+else:
+    print("Verification Failed")
