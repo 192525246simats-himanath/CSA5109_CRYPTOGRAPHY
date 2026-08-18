@@ -1,0 +1,15 @@
+import hmac
+import hashlib
+
+key = b"secret"
+msg = b"Hello World"
+
+h = hashlib.sha256(msg).hexdigest()
+mac = hmac.new(key, msg, hashlib.sha256).hexdigest()
+
+print("Hash :", h)
+print("HMAC :", mac)
+
+if hmac.compare_digest(mac,
+    hmac.new(key, msg, hashlib.sha256).hexdigest()):
+    print("HMAC Verified")
